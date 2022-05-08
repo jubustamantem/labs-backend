@@ -24,7 +24,6 @@ import java.util.List;
 public class CourseController{
 
     private final CourseService courseService;
-
     private final AssociationService associationService;
     private final UserService userService;
 
