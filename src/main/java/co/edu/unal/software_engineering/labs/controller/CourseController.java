@@ -33,16 +33,6 @@ public class CourseController{
         this.userService = userService;
     }
 
-    @PostMapping( value = {"/profesor/crear-curso"} )
-    public ResponseEntity<Void> createCourse( @RequestBody CoursePOJO coursePojo ){
-        Course course = courseService.mapperCourseEntity( coursePojo );
-        if( !courseService.isRightCourse( course ) ){
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
-        }
-        courseService.save( course );
-        return new ResponseEntity<>( HttpStatus.CREATED );
-    }
-
     @GetMapping( "/mis-cursos" )
     public List<EnrolledCoursePOJO> getCoursesByUser( ){
         String username = SecurityContextHolder.getContext( ).getAuthentication( ).getName( );
@@ -55,4 +45,13 @@ public class CourseController{
         return enrolledCourses;
     }
 
+    @PostMapping( value = {"/profesor/crear-curso"} )
+    public ResponseEntity<Void> createCourse( @RequestBody CoursePOJO coursePojo ){
+        Course course = courseService.mapperCourseEntity( coursePojo );
+        if( !courseService.isRightCourse( course ) ){
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+        }
+        courseService.save( course );
+        return new ResponseEntity<>( HttpStatus.CREATED );
+    }
 }
