@@ -60,13 +60,13 @@ public class Role implements Serializable{
         this.roleName = roleName;
     }
 
-    public List<User> getUsers( ){
+    /*public List<User> getUsers( ){
         return this.users;
     }
 
     public void setUsers( List<User> users ){
         this.users = users;
-    }
+    }*/
 
     /**
      * Methods

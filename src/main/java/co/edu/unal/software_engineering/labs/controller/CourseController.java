@@ -24,7 +24,6 @@ import java.util.List;
 public class CourseController{
 
     private final CourseService courseService;
-
     private final AssociationService associationService;
     private final UserService userService;
 
@@ -32,16 +31,6 @@ public class CourseController{
         this.courseService = courseService;
         this.associationService = associationService;
         this.userService = userService;
-    }
-
-    @PostMapping( value = {"/profesor/crear-curso"} )
-    public ResponseEntity<Void> createCourse( @RequestBody CoursePOJO coursePojo ){
-        Course course = courseService.mapperCourseEntity( coursePojo );
-        if( !courseService.isRightCourse( course ) ){
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
-        }
-        courseService.save( course );
-        return new ResponseEntity<>( HttpStatus.CREATED );
     }
 
     @GetMapping( "/mis-cursos" )
@@ -56,4 +45,13 @@ public class CourseController{
         return enrolledCourses;
     }
 
+    @PostMapping( value = {"/profesor/crear-curso"} )
+    public ResponseEntity<Void> createCourse( @RequestBody CoursePOJO coursePojo ){
+        Course course = courseService.mapperCourseEntity( coursePojo );
+        if( !courseService.isRightCourse( course ) ){
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+        }
+        courseService.save( course );
+        return new ResponseEntity<>( HttpStatus.CREATED );
+    }
 }
